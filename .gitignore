@@ -1,4 +1,9 @@
-node_modules/
+# Workspace-level node_modules — pnpm hoists deps here.
+# packages/shared/node_modules is intentionally tracked (with .gitkeep)
+# so AI-generated Dockerfile's `COPY` of it from the deps stage doesn't
+# fail when shared has no own dependencies.
+/node_modules/
+/apps/*/node_modules/
 .next/
 out/
 .env
