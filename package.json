@@ -1,0 +1,11 @@
+{
+  "name": "monorepo-pnpm",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "pnpm -r build",
+    "start:web": "pnpm --filter web start",
+    "start:api": "pnpm --filter api start"
+  },
+  "packageManager": "pnpm@9.0.0"
+}

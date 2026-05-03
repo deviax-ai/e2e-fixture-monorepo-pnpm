@@ -1,0 +1,39 @@
+{
+  "stack_bucket": "node-monorepo-pnpm",
+  "stack_slug": "nextjs",
+  "external": {
+    "ai_source": "hand",
+    "complexity": "monorepo"
+  },
+  "must_find_issues": [
+    { "source": "regex", "title_contains": "secret" }
+  ],
+  "required_artifacts": [
+    "Dockerfile",
+    ".deviax/k8s/deployment.yaml",
+    ".deviax/k8s/service.yaml"
+  ],
+  "required_questions": [
+    "subdomain"
+  ],
+  "must_reach_phase": "live",
+  "assert": {
+    "outcome": "success",
+    "url_status_class": "2xx",
+    "url_status_after_1h": "not_5xx"
+  },
+  "budget": {
+    "max_ai_cost_usd": 2.00,
+    "max_duration_seconds": 1500,
+    "max_user_questions": 6
+  },
+  "seeded_problems": [
+    {
+      "file": "apps/api/server.js",
+      "line": 6,
+      "type": "hardcoded_secret",
+      "marker_substring": "monorepo-api-dev-secret-change-me"
+    }
+  ],
+  "notes": "Phase 2 wildcard — pnpm workspace with web (Next.js) + api (Express) + shared package. Pipeline must detect workspace, pick a deploy target (likely web), and generate a Dockerfile that installs from workspace root then builds the chosen app. May ask the user `which-app-to-deploy` question."
+}
